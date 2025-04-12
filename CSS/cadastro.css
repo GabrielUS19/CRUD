@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: aliceblue;
+    --font-color: #333;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+    font-family: 'Inter', sans-serif;
+    color: var(--font-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 2px;
+}
+
+h5 {
+    cursor: default;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    gap: 10px;
+}
+
+.input-container {
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input{
+    background-color: transparent;
+    width: 100%;
+    border: 1px solid var(--font-color);
+    border-radius: 2px;
+    height: 40px;
+    padding: 0 10px;
+}
+
+.input-wrapper label {
+    position: absolute;
+    font-size: 14px;
+    color: var(--font-color);
+    left: 12px;
+    top: 11px;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+.input-wrapper input:focus + label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    color: #007BFF;
+    background-color: var(--background-color);
+    padding: 0 5px;
+}
+
+.input-wrapper input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    background-color: var(--background-color);
+    padding: 0 5px;
+}
+
+.button-container {
+    display: flex;
+    max-width: 400px;
+    width: 100%;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.button-container button {
+    background-color: #007BFF;
+    color: aliceblue;
+    border: none;
+    border-radius: 2px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+.button-container button:focus {
+    outline: none;
+    background-color: #0056b3;
+}
+
+.button-container button.finish {
+    background-color: #333;
+}
+
+.button-container button.finish:focus,
+.button-container button.finish:hover {
+    background-color: #111;
+}
+
+.already-registered {
+    text-align: center;
+    margin-top: 20px;
+    cursor: default;
+}
+
+.already-registered a {
+    text-decoration: none;
+}
