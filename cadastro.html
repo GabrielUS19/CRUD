@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça sua Conta</title>
+</head>
+<body>
+    <main>
+        <form>
+            <div class="step">
+                <h5>Faça sua Conta</h5>
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <input type="email" name="email" id="email-input" placeholder=" " maxlength="255" required>
+                        <label for="email-input">E-mail</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" id="password-input" placeholder=" " minlength="8" maxlength="255" required>
+                        <label for="password-input">Senha</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="confirm-password" id="confirm-password-input" placeholder=" " minlength="8" maxlength="255" required>
+                        <label for="confirm-password-input">Confirmar Senha</label>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button type="button" class="navigation-button next">Continuar</button>
+                </div>
+                <span class="already-account">
+                    Já possui uma conta? <a href="login.html">Entrar</a>
+                </span>
+            </div>
+            <div class="step">
+                <h5>Dados Pessoais</h5>
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <input type="text" name="name" id="name-input" placeholder=" " maxlength="255" required>
+                        <label for="name-input">Nome Completo</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="phone" id="phone-input" placeholder=" " maxlength="15" required>
+                        <label for="phone-input">Telefone</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="birthday" id="birthday-input" placeholder=" " maxlength="10" required>
+                        <label for="birthday-input">CPF</label>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button type="button" class="navigation-button back">Voltar</button>
+                    <button type="submit" class="navigation-button finish">Finalizar Cadastro</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
