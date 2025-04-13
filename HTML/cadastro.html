@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça sua Conta</title>
     <link rel="stylesheet" href="../CSS/cadastro.css">
+    <script type="module" src="../JS/controller/registerController.js" defer></script>
 </head>
 <body>
     <main>
@@ -17,12 +18,14 @@
                         <label for="email-input">E-mail</label>
                     </div>
                     <div class="input-wrapper">
-                        <input type="password" name="password" id="password-input" placeholder=" " minlength="8" maxlength="255" required>
+                        <input class="password-input" type="password" name="password" id="password-input" placeholder=" " minlength="8" maxlength="255" required>
                         <label for="password-input">Senha</label>
+                        <img src="../imgs/close-eye.svg" alt="mostrar senha" class="eye-icon">
                     </div>
                     <div class="input-wrapper">
-                        <input type="password" name="confirm-password" id="confirm-password-input" placeholder=" " minlength="8" maxlength="255" required>
+                        <input class="password-input" type="password" name="confirm-password" id="confirm-password-input" placeholder=" " minlength="8" maxlength="255" required>
                         <label for="confirm-password-input">Confirmar Senha</label>
+                        <img src="../imgs/close-eye.svg" alt="mostrar senha" class="eye-icon">
                     </div>
                 </div>
 

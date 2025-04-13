@@ -97,6 +97,19 @@ h5 {
     padding: 0 5px;
 }
 
+.input-container img {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 30px;
+}
+
+.input-wrapper input:focus ~ img,
+.input-wrapper input:not(:placeholder-shown) ~ img {
+    display: block;
+}
+
 .button-container {
     display: flex;
     max-width: 400px;
@@ -143,4 +156,13 @@ h5 {
 
 .already-registered a {
     text-decoration: none;
+}
+
+.already-registered a:hover {
+    color: #007BFF;
+}
+
+input[type="password"]::-ms-clear,
+input[type="password"]::-ms-reveal {
+    display: none;
 }
