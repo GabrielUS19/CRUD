@@ -1,0 +1,22 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "Site to train HTML/CSS and JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielUS19/CRUD.git"
+  },
+  "keywords": [
+    "CRUD"
+  ],
+  "author": "Gabriel Uchoa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabrielUS19/CRUD/issues"
+  },
+  "homepage": "https://github.com/GabrielUS19/CRUD#readme"
+}
