@@ -4,7 +4,9 @@
   "description": "Site to train HTML/CSS and JS",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "dev": "postcss CSS/styles.css -o CSS/styles.css --watch",
+    "build": "postcss CSS/styles.css -o CSS/styles.css"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,9 @@
   "homepage": "https://github.com/GabrielUS19/CRUD#readme",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.7",
-    "postcss": "^8.5.3",
     "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.3"
   }
 }
