@@ -1,0 +1,11 @@
+Front-End
+	HTML/CSS
+	TailwindCSS
+	JavaScript
+
+Back-End
+	Node.js + Express
+	Prisma
+	JWT
+	Criptography
+	PostGreSQL
