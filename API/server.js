@@ -1,6 +1,6 @@
 import express from "express";
-
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -15,13 +15,13 @@ app.post("/users", async (req, res) => {
   const password = req.body.password?.replace(/\s/g, "");
 
   if (!name || !email || !password) {
-    return res.status(400).json("All fields are required");
+    return res.status(400).json({ message: "All fields are required" });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(email)) {
-    return res.status(400).json("Invalid Email format");
+    return res.status(400).json({ message: "Invalid Email format" });
   }
 
   const user = await prisma.user.findUnique({
@@ -29,18 +29,53 @@ app.post("/users", async (req, res) => {
   });
 
   if (user) {
-    return res.status(400).json(`This Email is already in use!`);
+    return res.status(400).json({ message: "This Email is already in use!" });
   }
+
+  if (password.length < 8) {
+    return res.status(400).json({ message: "This password is so weak" });
+  }
+
+  const hashPassword = await bcrypt.hash(password, 10);
 
   await prisma.user.create({
     data: {
       email: email,
       name: name,
-      password: password,
+      password: hashPassword,
     },
   });
 
-  res.status(201).json(`${name} Is now a user`);
+  res
+    .status(201)
+    .json({ message: "User created succesfuly", user: { name, email } });
+});
+
+// Login Route
+
+app.post("/login", async (req, res) => {
+  const email = req.body.email?.trim().toLowerCase();
+  const password = req.body.password?.replace(/\s/g, "");
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (!user) {
+    return res.status(400).json({ message: "Invalid Email or Password" });
+  }
+
+  const result = await bcrypt.compare(password, user.password);
+
+  if (!result) {
+    return res.status(400).json({ message: "Invalid Email or Password" });
+  }
+
+  return res.status(200).json({ message: "Seja bem vindo" });
 });
 
 // Update User
@@ -53,11 +88,6 @@ app.delete("/users", async (req, res) => {
   });
 
   res.send("Deleted");
-});
-
-app.get("/users", async (req, res) => {
-  const name = await prisma.user.findMany();
-  res.send(name);
 });
 
 app.listen(3000);
