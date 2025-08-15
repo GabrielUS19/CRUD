@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { PrismaClient } from "@prisma/client";
 import validator from "validator";
+import { json } from "express";
 
 const prisma = new PrismaClient();
 
@@ -74,7 +75,53 @@ const login_post = async (req, res) => {
   res.status(200).json({ message: `Welcome ${user.name}` });
 };
 
+const update_password_patch = async (req, res) => {
+  const userID = parseInt(req.params.id, 10);
+
+  const {
+    oldPassword = "",
+    newPassword = "",
+    confirmNewPassword = "",
+  } = req.body;
+
+  if (isNaN(userID)) {
+    return res.status(400), json({ message: "Invalid ID" });
+  }
+
+  if (!oldPassword || !newPassword || !confirmNewPassword) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  if (newPassword !== confirmNewPassword) {
+    return res.status(400).json({ message: "The passwords aren't the same" });
+  }
+
+  if (!validator.isStrongPassword(newPassword)) {
+    return res.status(400).json({ message: "This password is so weak" });
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userID },
+  });
+
+  const validOldPassword = await bcrypt.compare(oldPassword, user.password);
+
+  if (!validOldPassword) {
+    return res.status(400).json({ message: "The old password is incorrect" });
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  await prisma.user.update({
+    where: { id: userID },
+    data: { password: hashedPassword },
+  });
+
+  res.status(200).json({ message: "Password updated" });
+};
+
 export default {
   signup_post,
   login_post,
+  update_password_patch,
 };
