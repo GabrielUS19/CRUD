@@ -85,7 +85,7 @@ const update_password_patch = async (req, res) => {
   } = req.body;
 
   if (isNaN(userID)) {
-    return res.status(400), json({ message: "Invalid ID" });
+    return res.status(400), json({ message: "Invalid ID format" });
   }
 
   if (!oldPassword || !newPassword || !confirmNewPassword) {
@@ -103,6 +103,10 @@ const update_password_patch = async (req, res) => {
   const user = await prisma.user.findUnique({
     where: { id: userID },
   });
+
+  if (!user) {
+    res.status(400).json({ message: "Invalid ID" });
+  }
 
   const validOldPassword = await bcrypt.compare(oldPassword, user.password);
 
